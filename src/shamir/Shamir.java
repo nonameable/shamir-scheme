@@ -5,6 +5,7 @@ import java.util.Random;
 
 
 public class Shamir {
+	// we select the 12th Mersenne Prime as our max prime.
 	private static final double MAX_PRIME = 173; //Math.pow(2, 127) - 1;
 	private static final double MIN = 2;
 	Random randomGenerator;
@@ -28,7 +29,7 @@ public class Shamir {
 		for (int i = 0; i < poly.length; i++) {
 			acum = acum + poly[i] * Math.pow(x, i);
 		}
-		return acum;
+		return acum % MAX_PRIME;
 	}
 	
 	public ArrayList<Point> get_points(double secret, int n, int k){
