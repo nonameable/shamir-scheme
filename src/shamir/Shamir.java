@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class Shamir {
 	// we select the 12th Mersenne Prime as our max prime.
-	private static final double MAX_PRIME = 173; //Math.pow(2, 127) - 1;
+	private static final double MAX_PRIME = 1301;//Math.pow(2, 127) - 1;
 	private static final double MIN = 2;
 	Random randomGenerator;
 	
@@ -52,11 +52,20 @@ public class Shamir {
 
 	public static void main(String[] args) {
 		
+		System.out.println("----------- HIDING THE SECRET -----------");
+		double secret = 12;
+		int n = 5; int k = 2;
+		System.out.println("Secret is: "+ secret +". N is: " + n + " and K is: " + k);
 		Shamir shamir = new Shamir();
-		ArrayList<Point> pointsToShare = shamir.get_points(12345, 5, 2);
+		ArrayList<Point> pointsToShare = shamir.get_points(secret, n, k);
 		for (Point point : pointsToShare) {
 			System.out.println(point.toString());
 		}
+		System.out.println("------------REVEALING THE SECRET ----------------");
+		Lagrange lagrange = new Lagrange();
+		double secretRevealed = lagrange.findSecret(pointsToShare, MAX_PRIME);
+		System.out.println("secret Revealed is: " + secretRevealed);
+		
 	}
 
 }
