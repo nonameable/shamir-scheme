@@ -47,25 +47,5 @@ public class Shamir {
 		}
 		return points;
 	}
-	
-	
-
-	public static void main(String[] args) {
-		
-		System.out.println("----------- HIDING THE SECRET -----------");
-		double secret = 12;
-		int n = 5; int k = 2;
-		System.out.println("Secret is: "+ secret +". N is: " + n + " and K is: " + k);
-		Shamir shamir = new Shamir();
-		ArrayList<Point> pointsToShare = shamir.get_points(secret, n, k);
-		for (Point point : pointsToShare) {
-			System.out.println(point.toString());
-		}
-		System.out.println("------------REVEALING THE SECRET ----------------");
-		Lagrange lagrange = new Lagrange();
-		double secretRevealed = lagrange.findSecret(pointsToShare, MAX_PRIME);
-		System.out.println("secret Revealed is: " + secretRevealed);
-		
-	}
 
 }
