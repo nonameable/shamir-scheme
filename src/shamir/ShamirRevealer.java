@@ -1,7 +1,5 @@
 package shamir;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Vector;
@@ -12,20 +10,20 @@ public class ShamirRevealer {
 
 	public double findSecret(ArrayList<Point> points, double prime) {
 		n = points.size();
-		Vector<Double> xx = new Vector<Double>();
-		Vector<Double> yy = new Vector<Double>();
+		Vector<Double> x = new Vector<Double>();
+		Vector<Double> y = new Vector<Double>();
 
 		for (Point point : points) {
-			xx.addElement(point.x);
-			yy.addElement(point.y);
+			x.addElement(point.x);
+			y.addElement(point.y);
 		}
 
 		for (int i = 0; i < n; i++) {
-			product = (double) yy.elementAt(i);
+			product = (double) y.elementAt(i);
 			for (int j = 0; j < n; j++) {
 				if (i != j) {
-					double diff = xx.elementAt(j) - xx.elementAt(i);
-					product = product * xx.elementAt(j) / diff;
+					double diff = x.elementAt(j) - x.elementAt(i);
+					product = product * x.elementAt(j) / diff;
 				}
 			}
 			sum = sum + product;
